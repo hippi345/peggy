@@ -455,6 +455,8 @@ echo "foo = '1' { return 42 }" | npx peggy --output parser.js --source-map --tes
     <code>grammarSource</code> in the <code>source</code> key. As an example, if
     you pass in <code>grammarSource</code> as "main.js", then errors with
     locations include <code>{ source: 'main.js', ... }</code>.
+    When calling <code>parse()</code>, you can also use the
+    <code>source</code> option as an alias for <code>grammarSource</code>.
     <br><br>
     If you pass an object, the location API returns the entire object in the
     <code>source</code> key. If you format an error containing a location with
@@ -583,6 +585,21 @@ supported:</p>
 <dl>
   <dt><code>startRule</code></dt>
   <dd>Name of the rule to start parsing from.</dd>
+
+  <dt id="parse-grammar-source"><code>grammarSource</code></dt>
+  <dd>
+    A string or object representing the origin of the input string being parsed.
+    The <code>location()</code> API returns this value in the
+    <code>source</code> key. See also the
+    <a href="#grammar-source"><code>grammarSource</code></a> option to
+    <code>peggy.generate()</code>.
+  </dd>
+
+  <dt><code>source</code></dt>
+  <dd>
+    Alias for <code>grammarSource</code>. If both are provided,
+    <code>grammarSource</code> takes precedence.
+  </dd>
 
   <dt><code>tracer</code></dt>
   <dd>

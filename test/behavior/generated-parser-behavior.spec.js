@@ -3121,6 +3121,38 @@ describe("generated parser behavior", () => {
             },
           }, { grammarSource: source });
         });
+
+        it("accepts source as an alias for grammarSource", () => {
+          const source = { source: "object" };
+          const parser = peg.generate([
+            "start = line (nl+ line)*",
+            "line = digit (' '+ digit)*",
+            "digit = [0-9]",
+            "nl = '\\r'? '\\n'",
+          ].join("\n"), options);
+
+          expect(parser).to.failToParse("1\n2\n\n3\n\n\n4 5 x", {
+            location: {
+              source,
+              start: { offset: 13, line: 7, column: 5 },
+              end: { offset: 14, line: 7, column: 6 },
+            },
+          }, { source });
+        });
+
+        it("prefers grammarSource over source when both are set", () => {
+          const grammarSource = "from-grammar-source";
+          const source = "from-source";
+          const parser = peg.generate("start = 'a'", options);
+
+          expect(parser).to.failToParse("b", {
+            location: {
+              source: grammarSource,
+              start: { offset: 0, line: 1, column: 1 },
+              end: { offset: 1, line: 1, column: 2 },
+            },
+          }, { grammarSource, source });
+        });
       });
     });
 

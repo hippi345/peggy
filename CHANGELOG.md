@@ -12,6 +12,10 @@ Released: TBD
 
 ### New features
 
+- Generated parsers accept a `source` parse option as an alias for
+  `grammarSource` (for backward compatibility, `grammarSource` still works and
+  takes precedence if both are set).
+
 ### Bug fixes
 
 5.1.1

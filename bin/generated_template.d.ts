@@ -177,6 +177,11 @@ export interface ParseOptions<T extends StartRuleNames = $$$DefaultStartRule$$$>
    * or even the File object.
    */
   readonly grammarSource?: GrammarSource;
+  /**
+   * Alias for `grammarSource`. If both are provided, `grammarSource` takes
+   * precedence.
+   */
+  readonly source?: GrammarSource;
   readonly startRule?: T;
   readonly tracer?: ParserTracer;
 

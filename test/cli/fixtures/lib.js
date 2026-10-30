@@ -154,7 +154,7 @@ function peg$parse(input, options) {
   options = options !== undefined ? options : {};
 
   const peg$FAILED = {};
-  const peg$source = options.grammarSource;
+  const peg$source = options.grammarSource !== undefined ? options.grammarSource : options.source;
 
   const peg$startRuleFunctions = {
     defaultRule: peg$parsedefaultRule,

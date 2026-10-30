@@ -1055,7 +1055,7 @@ export interface Location {
 
 /** The `start` and `end` position's of an object within the source. */
 export interface LocationRange {
-  /** Any object that was supplied to the `parse()` call as the `grammarSource` option. */
+  /** Any object that was supplied to the `parse()` call as the `grammarSource` or `source` option. */
   source: any;
   /** Position at the beginning of the expression. */
   start: Location;
@@ -1071,6 +1071,11 @@ export interface ParserOptions {
    * File object.
    */
   grammarSource?: any;
+  /**
+   * Alias for `grammarSource`. If both are provided, `grammarSource` takes
+   * precedence.
+   */
+  source?: any;
   startRule?: string;
   tracer?: ParserTracer;
 
